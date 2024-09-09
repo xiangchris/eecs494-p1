@@ -15,9 +15,11 @@ public class ArrowKeyMovement : MonoBehaviour
 
     void Update()
     {
-        if()
-        Vector2 currentInput = GetInput();
-        rb.velocity = currentInput * movementSpeed;
+        if (player_control)
+        {
+            Vector2 currentInput = GetInput();
+            rb.velocity = currentInput * movementSpeed;
+        }
     }
 
     Vector2 GetInput()
