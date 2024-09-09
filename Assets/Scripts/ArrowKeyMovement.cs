@@ -6,6 +6,7 @@ public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody rb;
     public float movementSpeed = 4;
+    static public bool player_control = true;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class ArrowKeyMovement : MonoBehaviour
 
     void Update()
     {
+        if()
         Vector2 currentInput = GetInput();
         rb.velocity = currentInput * movementSpeed;
     }
