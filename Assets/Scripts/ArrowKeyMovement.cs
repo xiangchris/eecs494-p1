@@ -33,7 +33,7 @@ public class ArrowKeyMovement : MonoBehaviour
         if (Mathf.Abs(horizontalInput) > 0.0f)
             verticalInput = 0.0f;
 
-        if (verticalInput != 0.0f && offsetX >= 0.05f)
+        if (verticalInput != 0.0f && offsetX != 0.0f)
         {
             if (offsetX < 0.25f)
                 offsetX = transform.position.x - offsetX;
@@ -41,7 +41,7 @@ public class ArrowKeyMovement : MonoBehaviour
                 offsetX = transform.position.x + (0.5f - offsetX);
             transform.position = new Vector3(offsetX, transform.position.y, transform.position.z);
         }
-        else if (horizontalInput != 0.0f && offsetY >= 0.05f)
+        else if (horizontalInput != 0.0f && offsetY != 0.0f)
         {
             if(offsetY < 0.25f)
                 offsetY = transform.position.y - offsetY;
