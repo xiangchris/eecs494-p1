@@ -26,12 +26,12 @@ public class DoorTransition : MonoBehaviour
         if(link_sprite.sprite.name == "link_sprites_0" || link_sprite.sprite.name == "link_sprites_12")
         {
             CameraController.transform_direction = new Vector3(camera.transform.position.x, (float)(camera.transform.position.y - 10.7), -10);
-            link.transform.position = (new Vector3(link.transform.position.x, link.transform.position.y - .8f, 0));
+            link.transform.position = (new Vector3(link.transform.position.x, link.transform.position.y - 1.5f, 0));
         }
         else if(link_sprite.sprite.name == "link_sprites_1" || link_sprite.sprite.name == "link_sprites_13")
         {
-            CameraController.transform_direction = new Vector3((float)(camera.transform.position.x - 16.6), camera.transform.position.y, -10);
-            link.transform.position = (new Vector3(link.transform.position.x - 1.3f, link.transform.position.y, 0));
+            CameraController.transform_direction = new Vector3((float)(camera.transform.position.x - 16.4), camera.transform.position.y, -10);
+            link.transform.position = (new Vector3(link.transform.position.x - 3f, link.transform.position.y, 0));
         }
         else if (link_sprite.sprite.name == "link_sprites_2" || link_sprite.sprite.name == "link_sprites_14")
         {
@@ -41,7 +41,7 @@ public class DoorTransition : MonoBehaviour
         else if (link_sprite.sprite.name == "link_sprites_3" || link_sprite.sprite.name == "link_sprites_15")
         {
             CameraController.transform_direction = new Vector3((float)(camera.transform.position.x + 16.4), camera.transform.position.y, -10);
-            link.transform.position = (new Vector3(link.transform.position.x + 2f, link.transform.position.y, 0));
+            link.transform.position = (new Vector3(link.transform.position.x + 3f, link.transform.position.y, 0));
         }
 
 
