@@ -23,11 +23,32 @@ public class ArrowKeyMovement : MonoBehaviour
     }
 
     Vector2 GetInput()
-    {
+    {     
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
+
+        float offsetX = transform.position.x % 0.5f;
+        float offsetY = transform.position.y % 0.5f;
+
         if (Mathf.Abs(horizontalInput) > 0.0f)
             verticalInput = 0.0f;
+
+        if (verticalInput != 0.0f && offsetX >= 0.05f)
+        {
+            if (offsetX < 0.25f)
+                offsetX = transform.position.x - offsetX;
+            else
+                offsetX = transform.position.x + (0.5f - offsetX);
+            transform.position = new Vector3(offsetX, transform.position.y, transform.position.z);
+        }
+        else if (horizontalInput != 0.0f && offsetY >= 0.05f)
+        {
+            if(offsetY < 0.25f)
+                offsetY = transform.position.y - offsetY;
+            else offsetY = transform.position.y + (0.5f - offsetY);
+            transform.position = new Vector3(transform.position.x, offsetY, transform.position.z);
+        }
+        
         return new Vector2 (horizontalInput, verticalInput);
     }
 }

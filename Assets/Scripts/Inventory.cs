@@ -13,7 +13,6 @@ public class Inventory : MonoBehaviour
 
     public int getRupees()
     {
-        Debug.Log("meow");
         return rupeeCount;
     }
 }
