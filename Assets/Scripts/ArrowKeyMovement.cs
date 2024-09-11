@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ArrowKeyMovement : MonoBehaviour
@@ -36,8 +35,6 @@ public class ArrowKeyMovement : MonoBehaviour
             facingDirection = (input.y > 0) ? FacingDirection.North : (input.y < 0) ? FacingDirection.South : facingDirection;
 
             rb.velocity = input * movementSpeed;
-
-            Debug.Log(facingDirection);
         }
     }
 
@@ -46,8 +43,8 @@ public class ArrowKeyMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Mathf.Abs(horizontalInput) > 0.0f)
-            verticalInput = 0.0f;
+        if (Mathf.Abs(verticalInput) > 0.0f)
+            horizontalInput = 0.0f;
 
         return new Vector2 (horizontalInput, verticalInput);
     }
@@ -58,13 +55,13 @@ public class ArrowKeyMovement : MonoBehaviour
         float offsetX = pos.x % gridSize;
         float offsetY = pos.y % gridSize;
 
-        if (input.x != 0.0f && offsetX != 0.0f)
-            pos.x = AlignCoordinate(pos.x, offsetX);
-        if (input.y != 0.0f && offsetY != 0.0f)
-            pos.y = AlignCoordinate(pos.y, offsetY);
+        if (input.x != 0.0f && offsetY != 0.0f)
+            transform.position = new Vector3(pos.x, AlignCoordinate(pos.y, offsetY), pos.z);
+        if (input.y != 0.0f && offsetX != 0.0f)
+            transform.position = new Vector3(AlignCoordinate(pos.x, offsetX), pos.y, pos.z);
     }
     private float AlignCoordinate(float position, float offset)
     {
-        return (offset < gridSize / 2f) ? (position - offset ) : (position + (gridSize - offset));
+        return (offset < gridSize / 2f) ? (position - offset) : (position + (gridSize - offset));
     }
 }
