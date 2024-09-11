@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ArrowKeyMovement : MonoBehaviour
 {
+    public enum FacingDirection
+    {
+        North,
+        East,
+        South,
+        West
+    }
+
     Rigidbody rb;
+    private float gridSize = 0.5f;
+
     public float movementSpeed = 4;
     static public bool player_control = true;
+    public static FacingDirection facingDirection;
 
     void Start()
     {
@@ -17,8 +29,15 @@ public class ArrowKeyMovement : MonoBehaviour
     {
         if (player_control)
         {
-            Vector2 currentInput = GetInput();
-            rb.velocity = currentInput * movementSpeed;
+            Vector2 input = GetInput();
+            GridAlign(ref input);
+
+            facingDirection = (input.x > 0) ? FacingDirection.East : (input.x < 0) ? FacingDirection.West : facingDirection;
+            facingDirection = (input.y > 0) ? FacingDirection.North : (input.y < 0) ? FacingDirection.South : facingDirection;
+
+            rb.velocity = input * movementSpeed;
+
+            Debug.Log(facingDirection);
         }
     }
 
@@ -27,28 +46,25 @@ public class ArrowKeyMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        float offsetX = transform.position.x % 0.5f;
-        float offsetY = transform.position.y % 0.5f;
-
         if (Mathf.Abs(horizontalInput) > 0.0f)
             verticalInput = 0.0f;
 
-        if (verticalInput != 0.0f && offsetX != 0.0f)
-        {
-            if (offsetX < 0.25f)
-                offsetX = transform.position.x - offsetX;
-            else
-                offsetX = transform.position.x + (0.5f - offsetX);
-            transform.position = new Vector3(offsetX, transform.position.y, transform.position.z);
-        }
-        else if (horizontalInput != 0.0f && offsetY != 0.0f)
-        {
-            if(offsetY < 0.25f)
-                offsetY = transform.position.y - offsetY;
-            else offsetY = transform.position.y + (0.5f - offsetY);
-            transform.position = new Vector3(transform.position.x, offsetY, transform.position.z);
-        }
-        
         return new Vector2 (horizontalInput, verticalInput);
+    }
+
+    private void GridAlign(ref Vector2 input)
+    {
+        Vector3 pos = transform.position;
+        float offsetX = pos.x % gridSize;
+        float offsetY = pos.y % gridSize;
+
+        if (input.x != 0.0f && offsetX != 0.0f)
+            pos.x = AlignCoordinate(pos.x, offsetX);
+        if (input.y != 0.0f && offsetY != 0.0f)
+            pos.y = AlignCoordinate(pos.y, offsetY);
+    }
+    private float AlignCoordinate(float position, float offset)
+    {
+        return (offset < gridSize / 2f) ? (position - offset ) : (position + (gridSize - offset));
     }
 }
