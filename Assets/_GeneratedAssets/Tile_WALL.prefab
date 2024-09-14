@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8582927225364001207}
   m_Layer: 0
   m_Name: Tile_WALL
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.95, y: 0.45, z: 1}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Size: {x: 0.98, y: 0.98, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
