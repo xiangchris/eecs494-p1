@@ -26,7 +26,7 @@ public class SwordMovement : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "wall")
             gameObject.SetActive(false);
