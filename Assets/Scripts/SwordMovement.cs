@@ -16,12 +16,39 @@ public class SwordMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = new Vector2(0f, -1f);
-        rb.velocity = dir * speed;
+
+    }
+    Vector2 setDirection()
+    {
+        Vector2 dir = Vector2.zero;
+        float zRotate = 0f;
+        switch (ArrowKeyMovement.getDirection())
+        {
+            case Utility.FacingDirection.North:
+                zRotate = 180;
+                dir.y = 1f;
+                break;
+            case Utility.FacingDirection.East:
+                zRotate = 90;
+                dir.x = 1f;
+                break;
+            case Utility.FacingDirection.West:
+                zRotate = 270;
+                dir.x = -1f;
+                break;
+            default:
+                zRotate = 0f;
+                dir.y = -1f;
+                break;
+        }
+        transform.Rotate(0f, 0f, zRotate);
+        return dir;
     }
 
     public void StartMovement(Vector3 pos)
     {
+        transform.rotation = Quaternion.identity;
+        rb.velocity = setDirection() * speed;
         transform.position = pos;
         gameObject.SetActive(true);
     }

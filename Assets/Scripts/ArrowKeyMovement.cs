@@ -50,9 +50,10 @@ public class ArrowKeyMovement : MonoBehaviour
         float offsetY = pos.y % gridSize;
 
         if (input.x != 0.0f && offsetY != 0.0f)
-            transform.position = new Vector3(pos.x, AlignCoordinate(pos.y, offsetY), pos.z);
+            pos.y = AlignCoordinate(pos.y, offsetY);
         if (input.y != 0.0f && offsetX != 0.0f)
-            transform.position = new Vector3(AlignCoordinate(pos.x, offsetX), pos.y, pos.z);
+            pos.x = AlignCoordinate(pos.x, offsetX);
+        transform.position = pos;
     }
     private float AlignCoordinate(float position, float offset)
     {
