@@ -7,6 +7,8 @@ TagManager:
   - rupee
   - door
   - wall
+  - sword
+  - enemy
   layers:
   - Default
   - TransparentFX

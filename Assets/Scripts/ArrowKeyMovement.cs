@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ArrowKeyMovement : MonoBehaviour
 {
-    Rigidbody rb;
+    public static Rigidbody playerRigidbody;
     private float gridSize = 0.5f;
     private static Utility.Facing direction;
 
     public float movementSpeed = 4;
-    static public bool player_control = true;
+    static public bool playerControl = true;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();        
+        playerRigidbody = GetComponent<Rigidbody>();        
     }
 
     void Update()
     {
-        if (player_control)
+        if (playerControl)
         {
             Vector2 input = GetInput();
             GridAlign(ref input);
@@ -26,7 +26,7 @@ public class ArrowKeyMovement : MonoBehaviour
             direction = (input.x > 0) ? Utility.Facing.East : (input.x < 0) ? Utility.Facing.West : direction;
             direction = (input.y > 0) ? Utility.Facing.North : (input.y < 0) ? Utility.Facing.South : direction;
 
-            rb.velocity = input * movementSpeed;
+            playerRigidbody.velocity = input * movementSpeed;
         }
     }
 
@@ -45,7 +45,7 @@ public class ArrowKeyMovement : MonoBehaviour
 
     private void GridAlign(ref Vector2 input)
     {
-        Vector3 pos = transform.position;
+        Vector2 pos = transform.position;
         float offsetX = pos.x % gridSize;
         float offsetY = pos.y % gridSize;
 

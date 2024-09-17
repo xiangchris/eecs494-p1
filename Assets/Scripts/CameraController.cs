@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
                     CoroutineUtilities.MoveObjectOverTime(transform, initial_position, transform_direction, 2.5f)
                 );
                 room_transition = false;
-                ArrowKeyMovement.player_control = true;
+                ArrowKeyMovement.playerControl = true;
             }
 
             /* We must yield here to let time pass, or we will hardlock the game (due to infinite while loop) */

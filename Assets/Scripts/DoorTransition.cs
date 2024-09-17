@@ -28,7 +28,7 @@ public class DoorTransition : MonoBehaviour
             Vector3 camPos = mainCamera.transform.position;
             Vector3 linkPos = transform.position;
             CameraController.room_transition = true;
-            ArrowKeyMovement.player_control = false;
+            ArrowKeyMovement.playerControl = false;
             switch (ArrowKeyMovement.getDirection())
             {
                 case Utility.Facing.North:

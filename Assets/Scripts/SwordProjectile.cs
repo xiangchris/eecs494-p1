@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SwordProjectile : MonoBehaviour
 {
@@ -12,36 +11,16 @@ public class SwordProjectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameObject.SetActive(false);
     }
 
-    Vector3 setDirection()
-    {
-        Vector3 dir = Vector3.zero;
-        switch (ArrowKeyMovement.getDirection())
-        {
-            case Utility.Facing.North:
-                dir.y = 1f;
-                break;
-            case Utility.Facing.East:
-                dir.x = 1f;
-                break;
-            case Utility.Facing.West:
-                dir.x = -1f;
-                break;
-            default:
-                dir.y = -1f;
-                break;
-        }
-        return dir;
-    }
-
+    // Start movement of projectiles
     public void StartMovement(Vector3 pos)
     {
         gameObject.SetActive(true);
-        transform.rotation = Quaternion.identity;
-        transform.Rotate(0f, 0f, (float)ArrowKeyMovement.getDirection(), Space.World);
-        rb.velocity = setDirection() * speed;
         transform.position = pos;
+        transform.eulerAngles = new Vector3(0f, 0f, (float)ArrowKeyMovement.getDirection());
+        rb.velocity = Utility.GetFacingVector() * speed;
     }
 
     void OnCollisionEnter(Collision collision)
