@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public SwordProjectile sp;
+    Rigidbody rb;
+
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //TODO: Check if health is full
+            sp.StartMovement(transform.position);
+            StartCoroutine(FreezePlayer());
+        }
+    }
+
+    IEnumerator FreezePlayer()
+    {
+        rb.velocity = Vector3.zero;
+        ArrowKeyMovement.player_control = false;
+        yield return new WaitForSeconds(0.17f);
+        ArrowKeyMovement.player_control = true;
     }
 }

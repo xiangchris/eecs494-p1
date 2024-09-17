@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class Utility
 {
-    public enum FacingDirection
+    public enum Facing
     {
-        North,
-        East,
-        South,
-        West
+        North = 180,
+        East = 90,
+        South = 0,
+        West = 270
     }
 
 }

@@ -6,7 +6,7 @@ public class ArrowKeyMovement : MonoBehaviour
 {
     Rigidbody rb;
     private float gridSize = 0.5f;
-    private static Utility.FacingDirection direction;
+    private static Utility.Facing direction;
 
     public float movementSpeed = 4;
     static public bool player_control = true;
@@ -23,14 +23,14 @@ public class ArrowKeyMovement : MonoBehaviour
             Vector2 input = GetInput();
             GridAlign(ref input);
 
-            direction = (input.x > 0) ? Utility.FacingDirection.East : (input.x < 0) ? Utility.FacingDirection.West : direction;
-            direction = (input.y > 0) ? Utility.FacingDirection.North : (input.y < 0) ? Utility.FacingDirection.South : direction;
+            direction = (input.x > 0) ? Utility.Facing.East : (input.x < 0) ? Utility.Facing.West : direction;
+            direction = (input.y > 0) ? Utility.Facing.North : (input.y < 0) ? Utility.Facing.South : direction;
 
             rb.velocity = input * movementSpeed;
         }
     }
 
-    public static Utility.FacingDirection getDirection() {  return direction; }
+    public static Utility.Facing getDirection() {  return direction; }
 
     Vector2 GetInput()
     {     

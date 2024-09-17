@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class SwordMovement : MonoBehaviour
+public class SwordProjectile : MonoBehaviour
 {
     Rigidbody rb;
     public float speed;
@@ -13,44 +14,34 @@ public class SwordMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    Vector3 setDirection()
     {
-
-    }
-    Vector2 setDirection()
-    {
-        Vector2 dir = Vector2.zero;
-        float zRotate = 0f;
+        Vector3 dir = Vector3.zero;
         switch (ArrowKeyMovement.getDirection())
         {
-            case Utility.FacingDirection.North:
-                zRotate = 180;
+            case Utility.Facing.North:
                 dir.y = 1f;
                 break;
-            case Utility.FacingDirection.East:
-                zRotate = 90;
+            case Utility.Facing.East:
                 dir.x = 1f;
                 break;
-            case Utility.FacingDirection.West:
-                zRotate = 270;
+            case Utility.Facing.West:
                 dir.x = -1f;
                 break;
             default:
-                zRotate = 0f;
                 dir.y = -1f;
                 break;
         }
-        transform.Rotate(0f, 0f, zRotate);
         return dir;
     }
 
     public void StartMovement(Vector3 pos)
     {
+        gameObject.SetActive(true);
         transform.rotation = Quaternion.identity;
+        transform.Rotate(0f, 0f, (float)ArrowKeyMovement.getDirection(), Space.World);
         rb.velocity = setDirection() * speed;
         transform.position = pos;
-        gameObject.SetActive(true);
     }
 
     void OnCollisionEnter(Collision collision)

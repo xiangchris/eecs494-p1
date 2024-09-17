@@ -31,19 +31,19 @@ public class DoorTransition : MonoBehaviour
             ArrowKeyMovement.player_control = false;
             switch (ArrowKeyMovement.getDirection())
             {
-                case Utility.FacingDirection.North:
+                case Utility.Facing.North:
                     CameraController.transform_direction = new Vector3(camPos.x, camPos.y + 10.7f, -10);
                     transform.position = new Vector3(linkPos.x, linkPos.y + 5f, 0);
                     break;
-                case Utility.FacingDirection.South:
+                case Utility.Facing.South:
                     CameraController.transform_direction = new Vector3(camPos.x, camPos.y - 10.7f, -10);
                     transform.position = new Vector3(linkPos.x, linkPos.y - 5f, 0);
                     break;
-                case Utility.FacingDirection.East:
+                case Utility.Facing.East:
                     CameraController.transform_direction = new Vector3(camPos.x + 16.4f, camPos.y, -10);
                     transform.position = new Vector3(linkPos.x + 5f, linkPos.y, 0);
                     break;
-                case Utility.FacingDirection.West:
+                case Utility.Facing.West:
                     CameraController.transform_direction = new Vector3(camPos.x - 16.4f, camPos.y, -10);
                     transform.position = new Vector3(linkPos.x - 5f, linkPos.y, 0);
                     break;
