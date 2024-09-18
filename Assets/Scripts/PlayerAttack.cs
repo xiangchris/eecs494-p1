@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Health health;
+    public HasHealth health;
     public GameObject sword;
-	public SwordProjectile sp;
+	public Projectile swordBeam;
 
 	bool canAttack = true;
 
@@ -34,8 +34,8 @@ public class PlayerAttack : MonoBehaviour
 		sword.transform.eulerAngles = new Vector3(0f, 0f, (float)ArrowKeyMovement.getDirection());
         sword.transform.position = transform.position + (Utility.GetFacingVector() * 0.6f);
 
-        if (health != null && health.getHealth() == Utility.MAX_HEALTH)
-			sp.StartMovement(transform.position);
+        if (health != null && health.GetHealth() == Utility.MAX_HEALTH)
+            swordBeam.StartMovement(transform.position);
         sword.SetActive(true);
 		yield return new WaitForSeconds(.3f);
 		

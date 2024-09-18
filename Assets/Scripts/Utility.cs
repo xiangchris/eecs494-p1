@@ -7,8 +7,6 @@ public static class Utility
     public const int MAX_HEALTH = 6;
     public const float ATTACK_LEN = 0.6f;
 
-    public static bool godMode = false;
-
     public enum Facing
     {
         North = 180,

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     Rigidbody rb;
     public float speed;
@@ -25,6 +25,7 @@ public class SwordProjectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        gameObject.SetActive(false);
+        if (collision.gameObject.tag == "wall")
+            gameObject.SetActive(false);
     }
 }

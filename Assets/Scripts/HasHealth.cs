@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class HasHealth : MonoBehaviour
 {
     public int health = Utility.MAX_HEALTH;
-    public float kbStr = 10f;
-
-    public int getHealth()
+    public int GetHealth()
     {
         return health;
     }
-
-    public void damage()
+    public void SetHealth(int h)
     {
-        health--;
-        if (health < 0)
-            gameObject.SetActive(false);
+        health = h;
+    }
+
+    public void AddHealth(int h)
+    {
+        health += h;
     }
 }

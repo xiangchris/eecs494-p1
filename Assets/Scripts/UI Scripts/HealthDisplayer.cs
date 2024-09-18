@@ -5,7 +5,7 @@ using TMPro;
 
 public class HealthDisplayer : MonoBehaviour
 {
-    public Health health;
+    public HasHealth health;
     TextMeshProUGUI textComponent;
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class HealthDisplayer : MonoBehaviour
     void Update()
     {
         if (health != null && textComponent != null)
-            textComponent.text = health.getHealth().ToString();
+            textComponent.text = health.GetHealth().ToString();
     }
 
 }
