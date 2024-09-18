@@ -21,7 +21,7 @@ public class Collector : MonoBehaviour
         if (collidedWith.tag == "rupee")
         {
             if (inventory != null)
-                inventory.AddRupees(1);
+                inventory.AddItem(Inventory.Item.Rupees, 1);
             Destroy(collidedWith);
             AudioSource.PlayClipAtPoint(rupeeCollectionSFX, Camera.main.transform.position);
         }

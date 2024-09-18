@@ -8,24 +8,20 @@ public class GodMode : MonoBehaviour
     public HasHealth health;
     public Inventory inv;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             godMode = !godMode;
+            inv.AddItem(Inventory.Item.Rupees, 9999);
+            inv.AddItem(Inventory.Item.Bombs, 9999);
+            inv.AddItem(Inventory.Item.Keys, 9999);
+            Debug.Log("God Mode = " + godMode.ToString());
         }
 
         if (godMode)
         {
-            inv.SetBomb(9999);
-            inv.SetRupees(9999);
             health.SetHealth(Utility.MAX_HEALTH);
         }
     }

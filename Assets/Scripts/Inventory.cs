@@ -1,39 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    int rupeeCount = 0;
-    int bombCount = 0;
-
-    public void AddRupees(int x)
+    private Dictionary<Item, int> InventoryItems = new Dictionary<Item, int>();
+    public enum Item
     {
-        rupeeCount += x;
+        Rupees,
+        Bombs,
+        Keys,
+    }
+    void Start()
+    {
+        InventoryItems.Clear();
+        foreach (Item i in Enum.GetValues(typeof(Item)))
+        {
+            InventoryItems[i] = 0;
+        }
     }
 
-    public void AddBomb(int x)
+    public void AddItem(Item item, int amount)
     {
-        bombCount += x;
+        InventoryItems[item] += amount;
     }
 
-    public void SetRupees(int x)
+    public int GetItem(Item item)
     {
-        rupeeCount = x;
-    }
-
-    public void SetBomb(int x)
-    {
-        bombCount = x;
-    }
-
-    public int getRupees()
-    {
-        return rupeeCount;
-    }
-
-    public int getBomb()
-    {
-        return bombCount;
+        return InventoryItems[item];
     }
 }
