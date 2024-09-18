@@ -15,4 +15,11 @@ public class Damage : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "enemy")
+            Debug.Log("ouch!");
+        //TODO Finish once enemies are here
+    }
 }
