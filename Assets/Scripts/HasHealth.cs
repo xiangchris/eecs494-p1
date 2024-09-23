@@ -6,7 +6,7 @@ using UnityEngine;
 public class HasHealth : MonoBehaviour
 {
     public int health;
-    public float kb;
+    public float kb = 5;
     Rigidbody rb;
 
     void Start()
@@ -31,11 +31,19 @@ public class HasHealth : MonoBehaviour
     public void TakeDamage(Vector3 otherPos)
     {
         AddHealth(-1);
-        Vector3 diff = transform.position - otherPos;
-        diff = new Vector3(1f, 1f, 0f) * Mathf.Max(diff.x, diff.y);
-        diff.Normalize();
-        rb.velocity = diff * kb;
+        Vector3 dir = CalculateKBDirection(transform.position - otherPos);
+        rb.velocity = dir * kb;
         StartCoroutine(StopCharacterAfterKnockback());
+    }
+
+    Vector3 CalculateKBDirection(Vector3 diff)
+    {
+        if (Mathf.Abs(diff.x) > Mathf.Abs(diff.y))
+            diff.y = 0;
+        else
+            diff.x = 0;
+        diff.Normalize();
+        return diff;
     }
 
     IEnumerator StopCharacterAfterKnockback()

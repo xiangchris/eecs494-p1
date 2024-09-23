@@ -17,8 +17,8 @@ public class InputToAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("horizontalInput", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("verticalInput", rb.velocity.y);
+        animator.SetFloat("horizontalInput", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+        animator.SetFloat("verticalInput", Input.GetAxisRaw("Vertical"));
 
         Flip();
 
@@ -30,10 +30,10 @@ public class InputToAnimator : MonoBehaviour
 
     void Flip()
     {
-        // Multiply the player's x local scale by -1
+        float input = Input.GetAxisRaw("Horizontal");
         Quaternion rotate = transform.rotation;
-        if (rb.velocity.x != 0)
-            rotate.y = rb.velocity.x > 0 ? 0 : rb.velocity.x < 0 ? 180 : rotate.y;
+        if (input != 0)
+            rotate.y = input > 0 ? 0 : input < 0 ? 180 : rotate.y;
         transform.rotation = rotate;
     }
 }
