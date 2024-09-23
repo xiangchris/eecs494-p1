@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDamage : MonoBehaviour
 {
-    public HasHealth health;
+    HasHealth health;
     public float iFrameDuration = 3.0f;
 
     public SpriteRenderer sr;
@@ -14,6 +14,7 @@ public class PlayerDamage : MonoBehaviour
 
     void Start()
     {
+        health = GetComponent<HasHealth>();
     }
 
     void OnCollisionStay(Collision collision)

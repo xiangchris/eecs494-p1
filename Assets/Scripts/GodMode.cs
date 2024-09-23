@@ -5,11 +5,18 @@ using UnityEngine;
 public class GodMode : MonoBehaviour
 {
     public static bool godMode = false;
-    public HasHealth health;
-    public Inventory inv;
+    
+    HasHealth health;
+    Inventory inv;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
+    {
+        inv = GetComponent<Inventory>();
+        health = GetComponent<HasHealth>();
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

@@ -9,6 +9,7 @@ TagManager:
   - wall
   - sword
   - enemy
+  - heart
   layers:
   - Default
   - TransparentFX

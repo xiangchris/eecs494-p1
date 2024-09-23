@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public HasHealth health;
-    public Inventory inv;
     public GameObject sword;
 	public Projectile swordBeam;
     public Projectile arrow;
 
+    HasHealth health;
+    Inventory inventory;
     bool canAttack = true;
 
 	void Start()
 	{
 		sword.SetActive(false);
-	}
+        inventory = GetComponent<Inventory>();
+        health = GetComponent<HasHealth>();
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -25,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 			StartCoroutine(Attack(true));
 		}
 
-		if (Input.GetKeyDown(KeyCode.Z) && canAttack && inv.GetItem(Inventory.Item.Rupees) > 0)
+		if (Input.GetKeyDown(KeyCode.Z) && canAttack && inventory.GetItem(Inventory.Item.Rupees) > 0)
         {
             StartCoroutine(Attack(false));
         }
@@ -67,6 +69,6 @@ public class PlayerAttack : MonoBehaviour
 	void OffHand() 
 	{
         arrow.StartMovement(transform.position);
-		inv.AddItem(Inventory.Item.Rupees, -1);
+        inventory.AddItem(Inventory.Item.Rupees, -1);
 	}
 }
