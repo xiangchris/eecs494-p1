@@ -9,9 +9,6 @@ public class HasHealth : MonoBehaviour
     public float kb = 5;
     Rigidbody rb;
 
-    public GameObject heart;
-    public GameObject rupee;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,11 +39,7 @@ public class HasHealth : MonoBehaviour
         }
         else
         {
-            if (gameObject.tag == "enemy")
-            {
-                DropItem();
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
     }
 
@@ -64,25 +57,5 @@ public class HasHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector3.zero;
-    }
-
-    void DropItem()
-    {
-        int rand = Random.Range(0, 5);
-        GameObject spawn;
-        switch (rand)
-        {
-            case 1:
-                spawn = heart;
-                break;
-            case 2:
-                spawn = rupee;
-                break;
-            default:
-                spawn = null;
-                break;
-        }
-        if (spawn != null)
-            Instantiate(spawn, transform.position, Quaternion.identity);
     }
 }

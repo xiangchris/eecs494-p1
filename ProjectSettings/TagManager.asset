@@ -10,6 +10,7 @@ TagManager:
   - sword
   - enemy
   - heart
+  - lock
   layers:
   - Default
   - TransparentFX
